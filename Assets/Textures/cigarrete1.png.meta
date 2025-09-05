@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 18bc02739204cf64eabfdd4aca78b366
+guid: 18c5eb3cb225dd24f96b8ec28c05c63b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7321426282457738746
-    second: cigarrete_0
+      213: -5114414269772572803
+    second: cigarrete1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cigarrete_0
+      name: cigarrete1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 8
         width: 1024
-        height: 1517
+        height: 1470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 602d5e03691156a90800000000000000
-      internalID: -7321426282457738746
+      spriteID: d775408a153f509b0800000000000000
+      internalID: -5114414269772572803
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cigarrete_0: -7321426282457738746
+      cigarrete1_0: -5114414269772572803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
