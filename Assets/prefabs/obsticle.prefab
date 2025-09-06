@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5030c7c7c7f4384fb8982e9e11b017b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::obsticle_movement
-  move_speed: 9
+  move_speed: 10
   dead_zone: -30
 --- !u!1 &8896873090964651632
 GameObject:

@@ -19,11 +19,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             rb.linearVelocity = Vector2.up * speed;
         }
+        if(is_player_alive && (transform.position.y > 45 || transform.position.y < -45))
+        {
+            end_game();
+        }
+    }
+
+    private void end_game()
+    {
+        is_player_alive = false;
+        logic.gameover();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        is_player_alive = false;
-        logic.gameover();
+        end_game();
     }
 }
