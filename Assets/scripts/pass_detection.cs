@@ -17,6 +17,9 @@ public class pass_detection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        logic.inc_score();
+        if(collision.gameObject.layer == 3)
+        {
+            logic.inc_score(1);
+        }
     }
 }
