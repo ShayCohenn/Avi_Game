@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -15,14 +16,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(is_player_alive && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if(is_player_alive && Touchscreen.current != null)
         {
-            rb.linearVelocity = Vector2.up * speed;
+            var touch = Touchscreen.current.primaryTouch;
+            if(touch.press.wasPressedThisFrame)
+            {
+                rb.linearVelocity = Vector2.up * speed;
+            }
         }
         if(is_player_alive && (transform.position.y > 45 || transform.position.y < -45))
-        {
             end_game();
-        }
     }
 
     private void end_game()
