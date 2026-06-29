@@ -1,41 +1,76 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float speed;
+    [SerializeField] private float flapSpeed = 30f;
+    [SerializeField] private TextMeshProUGUI countdownTxt;
+    private Rigidbody2D rb;
     public logic_manager logic;
-    private bool is_player_alive = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isPlayerAlive = true;
+    private bool isInteractable = false; 
+    private int startDelay = 3; // measured in seconds 
+
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         logic = GameObject.FindGameObjectWithTag("logic").GetComponent<logic_manager>();
+        StartCoroutine(StartGracePeriod());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(is_player_alive && Touchscreen.current != null)
+        if(isPlayerAlive && Touchscreen.current != null)
         {
             var touch = Touchscreen.current.primaryTouch;
-            if(touch.press.wasPressedThisFrame)
+            if(isInteractable && touch.press.wasPressedThisFrame)
             {
-                rb.linearVelocity = Vector2.up * speed;
+                Flap();
             }
         }
-        if(is_player_alive && (transform.position.y > 45 || transform.position.y < -45))
+        if(isPlayerAlive && (transform.position.y > 45 || transform.position.y < -45))
             end_game();
+    }
+
+    private void Flap()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, flapSpeed);
     }
 
     private void end_game()
     {
-        is_player_alive = false;
+        isPlayerAlive = false;
         logic.gameover();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         end_game();
+    }
+
+    private IEnumerator StartGracePeriod()
+    {
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        isInteractable = false;
+
+        while(startDelay > 0)
+        {
+            countdownTxt.text = startDelay.ToString();
+            yield return new WaitForSeconds(1f);
+            startDelay--;
+        }
+
+        countdownTxt.text = "YALLA!";
+
+        rb.gravityScale = originalGravity;
+        isInteractable = true;
+
+        yield return new WaitForSeconds(1f);
+        countdownTxt.gameObject.SetActive(false);
     }
 }

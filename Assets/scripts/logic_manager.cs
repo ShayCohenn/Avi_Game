@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class logic_manager : MonoBehaviour
 {
     public int score;
-    public Text score_text;
+    public TextMeshProUGUI score_text;
     public GameObject gameover_screen;
 
     public void inc_score(int amount)
