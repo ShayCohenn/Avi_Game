@@ -3,7 +3,7 @@ using UnityEngine;
 public class obsticle_movement : MonoBehaviour
 {
     public float move_speed = 5;
-    public int dead_zone = -30;
+    public int dead_zone = -40;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
