@@ -5,23 +5,41 @@ using TMPro;
 public class logic_manager : MonoBehaviour
 {
     public int score;
-    public TextMeshProUGUI score_text;
-    public GameObject gameover_screen;
+    public TextMeshProUGUI ScoreText;
+    [SerializeField] private  GameObject _gameoverScreen;
+    [SerializeField] private GameObject _pauseMenuPanel;
+    private bool isPaused = false;
 
-    public void inc_score(int amount)
+    public void incScore(int amount)
     {
         score += amount;
-        score_text.text = score.ToString();
+        ScoreText.text = score.ToString();
     }
 
-    public void restart_game()
+    public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void gameover()
     {
-        gameover_screen.SetActive(true);            
+        _gameoverScreen.SetActive(true);            
+    }
+
+    public void togglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            _pauseMenuPanel.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _pauseMenuPanel.SetActive(false);
+        }
     }
 
 }
