@@ -4,10 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour
 {
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _settingsMenu;
+
     public void PlayGame()
     {
         // Start a Coroutine so it can run across multiple frames
         StartCoroutine(LoadSceneAsync());
+    }
+
+    public void OpenSettings()
+    {
+        _mainMenu.SetActive(false);
+        _settingsMenu.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        _mainMenu.SetActive(true);
+        _settingsMenu.SetActive(false);
     }
 
     IEnumerator LoadSceneAsync()
