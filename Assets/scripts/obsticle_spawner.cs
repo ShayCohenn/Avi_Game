@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class obsticle_spawner : MonoBehaviour
 {
+    public logic_manager logic;
     public GameObject obsticle;
-    public float spawn_rate = 2;
-    public float height_offset = 10;
+    [SerializeField] private float spawn_rate = 3;
+    [SerializeField] private float height_offset = 10;
     private float timer = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private int lastMilestoneScore = 0;
 
     // Update is called once per frame
     void Update()
     {
+        if (logic.score > 0 && logic.score % 20 == 0 && logic.score != lastMilestoneScore)
+    {
+        spawn_rate -= 0.1f; // Decrease the delay between spawns
+        lastMilestoneScore = logic.score; // Record this milestone so it only fires once
+        
+        // Safety check: Prevent spawn_rate from going below a reasonable limit (e.g., 0.2 seconds)
+        if (spawn_rate < 2) 
+        {
+            spawn_rate = 2.2f;
+        }
+    }
         if (timer < spawn_rate) timer += Time.deltaTime;
         else
         {

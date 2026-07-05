@@ -12,6 +12,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private bool isPlayerAlive = true;
     private bool isInteractable = false; 
     private int startDelay = 3; // measured in seconds 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
 
     void Start()
     {
@@ -33,11 +35,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
         if(isPlayerAlive && (transform.position.y > 45 || transform.position.y < -45))
             end_game();
+            
+        if(transform.position.y < -60)
+        {
+            rb.gravityScale = 0;
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void Flap()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, flapSpeed);
+        audioSource.PlayOneShot(jumpSound);
     }
 
     private void end_game()
