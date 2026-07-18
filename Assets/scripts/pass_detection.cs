@@ -3,6 +3,7 @@ using UnityEngine;
 public class pass_detection : MonoBehaviour
 {
     public logic_manager logic;
+    [SerializeField] private NewMonoBehaviourScript playerScript;
     
     void Start()
     {
@@ -11,7 +12,7 @@ public class pass_detection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 3)
+        if(collision.gameObject.layer == 3 && playerScript.isPlayerAlive)
         {
             logic.incScore(1);
         }

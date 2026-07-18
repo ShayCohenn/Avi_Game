@@ -9,7 +9,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownTxt;
     private Rigidbody2D rb;
     public logic_manager logic;
-    private bool isPlayerAlive = true;
+    public bool isPlayerAlive = true;
     private bool isInteractable = false; 
     private int startDelay = 3; // measured in seconds 
     [SerializeField] private AudioSource audioSource;
